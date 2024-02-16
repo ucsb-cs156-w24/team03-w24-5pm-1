@@ -111,7 +111,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="requestTime">Request Time ISO Format</Form.Label>
                         <Form.Control
-                            data-testid="HelpRequesrForm-requestTime"
+                            data-testid="HelpRequestForm-requestTime"
                             id="requestTime"
                             type="datetime-local"
                             isInvalid={Boolean(errors.requestTime)}
