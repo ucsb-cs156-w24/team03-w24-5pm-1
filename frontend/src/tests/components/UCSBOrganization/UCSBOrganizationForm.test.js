@@ -73,19 +73,6 @@ describe("UCSBOrganizationForm tests", () => {
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
     });
 
-    test("that navigate(-1) is called when Cancel is clicked", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <UCSBOrganizationForm />
-                </Router>
-            </QueryClientProvider>
-        );
-    
-        const cancelButton = await screen.findByTestId(`${testId}-cancel`);
-        fireEvent.click(cancelButton);
-    
-        await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
-    });
+
 
 });
