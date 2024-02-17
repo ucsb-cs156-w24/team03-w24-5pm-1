@@ -55,6 +55,8 @@ describe("HelpRequestForm tests", () => {
 
         expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
         expect(screen.getByText(`Id`)).toBeInTheDocument();
+
+        
     });
 
 
@@ -95,6 +97,74 @@ describe("HelpRequestForm tests", () => {
 
     });
 
+    test("Correct Error messsages on bad input", async () => {
+
+        render(
+            <Router  >
+                <HelpRequestForm />
+            </Router>
+        );
+        await screen.findByTestId("HelpRequestForm-teamId");
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+        const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+
+        fireEvent.change(requesterEmailField, { target: { value: 'bad-input' } });
+        fireEvent.change(teamIdField, { target: { value: 'f11-5am-1 xyz' } });
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/Requester email must be a valid email./);
+        expect(screen.getByText(/Team ID must be a valid team id./)).toBeInTheDocument();
+
+        fireEvent.change(requesterEmailField, { target: { value: '*my email is john@example.com' } });
+        fireEvent.change(teamIdField, { target: { value: 'f11-13am-1' } });
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/Requester email must be a valid email./);
+        expect(screen.getByText(/Team ID must be a valid team id./)).toBeInTheDocument();
+
+        fireEvent.change(requesterEmailField, { target: { value: 'user@example.com123' } });
+        fireEvent.change(teamIdField, { target: { value: 'abc f11-12am-1' } });
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/Requester email must be a valid email./);
+        expect(screen.getByText(/Team ID must be a valid team id./)).toBeInTheDocument();
+    });
+    
+    test("No Error messsages on good input", async () => {
+
+        const mockSubmitAction = jest.fn();
+
+
+        render(
+            <Router  >
+                <HelpRequestForm submitAction={mockSubmitAction} />
+            </Router>
+        );
+        await screen.findByTestId("HelpRequestForm-teamId");
+
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+        const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+        const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+        const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+        const solvedField = screen.getByTestId("HelpRequestForm-solved");
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+
+        fireEvent.change(requesterEmailField, { target: { value: 'cgaucho@ucsb.edu' } });
+        fireEvent.change(teamIdField, { target: { value: 'w22-5pm-4' } });
+        fireEvent.change(tableOrBreakoutRoomField, { target: { value: '7' } });
+        fireEvent.change(requestTimeField, { target: { value: '2022-04-20T17:35' } });
+        fireEvent.change(explanationField, { target: { value: 'Need help with Swagger-ui' } });
+        fireEvent.click(solvedField);
+        fireEvent.click(submitButton);
+
+        await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
+        expect(screen.queryByText(/Requester email must be a valid email./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Team ID must be a valid team id./)).not.toBeInTheDocument();
+
+    });
 });
 
 
