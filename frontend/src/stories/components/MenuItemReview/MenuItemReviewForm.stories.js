@@ -33,5 +33,3 @@ Update.args = {
         window.alert("Submit was clicked with data: " + JSON.stringify(data));
    }
 };
-
-//
