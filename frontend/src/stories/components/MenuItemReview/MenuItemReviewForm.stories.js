@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuItemReviewForm from "main/components/MenuItemReviewForm/MenuItemReviewForm"
+import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm"
 import { menuItemReviewFixtures } from 'fixtures/menuItemReviewFixtures';
 
 export default {
