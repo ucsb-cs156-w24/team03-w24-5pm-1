@@ -1,26 +1,26 @@
 const ucsbDiningCommonsMenuItemFixtures = {
     oneUCSBDiningCommonsMenuItem: {
         "id": 1,
-        "diningCommonsCode ": "1234",
+        "diningCommonsCode ": "Carrillo",
         "name": "Pizza",
         "statioin": "Deli"
     },
     threeUCSBDiningCommonsMenuItems: [
         {
             "id": 1,
-            "diningCommonsCode ": "1234",
+            "diningCommonsCode ": "Ortega",
             "name": "Gyro",
             "statioin": "Euro"
         },
         {
             "id": 2,
-            "diningCommonsCode ": "4321",
+            "diningCommonsCode ": "DLG",
             "name": "Ceaser Salad",
             "statioin": "Greenery"
         },
         {
             "id": 3,
-            "diningCommonsCode ": "5555",
+            "diningCommonsCode ": "Portola",
             "name": "Burger",
             "statioin": "American"
         }
