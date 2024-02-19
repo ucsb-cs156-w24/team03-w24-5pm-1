@@ -47,7 +47,8 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         </Form.Group>
                     </Col>
                 )}
-
+            </Row>
+            <Row>
                 <Col>
                 <Form.Group className="mb-3" >
                         <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
@@ -63,9 +64,11 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
+                </Row>
+                <Row>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="professorEmail">Professor email</Form.Label>
+                        <Form.Label htmlFor="professorEmail">Professor Email</Form.Label>
                         <Form.Control
                             data-testid="RecommendationRequestForm-professorEmail"
                             id="professorEmail"
@@ -78,6 +81,8 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
+                </Row>
+                <Row>
                 <Col>
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="explanation">Explanation</Form.Label>
@@ -95,6 +100,8 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
+                </Row>
+                <Row>
                 <Col>
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="dateRequested">Date Requested</Form.Label>
@@ -111,6 +118,8 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
+                </Row>
+                <Row>
                 <Col>
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="dateNeeded">Date Needed</Form.Label>

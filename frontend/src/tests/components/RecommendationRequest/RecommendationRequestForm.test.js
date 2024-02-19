@@ -21,7 +21,11 @@ describe("RecommendationRequestForm tests", () => {
             </Router>
         );
         await screen.findByText(/Requester Email/);
-        await screen.findByText(/Professor email/);
+        await screen.findByText(/Professor Email/);
+        await screen.findByText(/Explanation/);
+        await screen.findByText(/Date Requested/);
+        await screen.findByText(/Date Needed/);
+        await screen.findByText(/Create/);
     });
 
 
