@@ -179,7 +179,7 @@ describe("MenuItemReviewEditPage tests", () => {
                 reviewerEmail: "jhinckley@ucsb.edu",
                 stars: "0",
                 dateReviewed: "1981-03-30T14:27",
-                comments: "I don\'t like jellybeans"
+                comments: "I don't like jellybeans"
             })); // posted object
 
         });
