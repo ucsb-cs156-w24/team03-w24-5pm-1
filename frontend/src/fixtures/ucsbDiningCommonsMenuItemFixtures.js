@@ -10,19 +10,19 @@ const ucsbDiningCommonsMenuItemFixtures = {
             "id": 1,
             "diningCommonsCode": "Ortega",
             "name": "Gyro",
-            "statioin": "Euro"
+            "station": "Euro"
         },
         {
             "id": 2,
             "diningCommonsCode": "DLG",
             "name": "Ceaser Salad",
-            "statioin": "Greenery"
+            "station": "Greenery"
         },
         {
             "id": 3,
             "diningCommonsCode": "Portola",
             "name": "Burger",
-            "statioin": "American"
+            "station": "American"
         }
     ]
 };
