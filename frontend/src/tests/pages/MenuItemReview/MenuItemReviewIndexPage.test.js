@@ -103,6 +103,7 @@ describe("MenuItemReviewIndexPage tests", () => {
     });
 
     test("renders empty table when backend unavailable, user only", async () => {
+        const queryClient = new QueryClient();
         setupUserOnly();
 
         axiosMock.onGet("/api/MenuItemReview/all").timeout();
@@ -123,6 +124,7 @@ describe("MenuItemReviewIndexPage tests", () => {
         expect(errorMessage).toMatch("Error communicating with backend via GET on /api/MenuItemReview/all");
         restoreConsole();
 
+        expect(screen.queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
     });
 
     test("what happens when you click delete, admin", async () => {
