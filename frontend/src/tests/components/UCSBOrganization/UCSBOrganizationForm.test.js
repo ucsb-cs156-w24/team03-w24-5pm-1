@@ -48,11 +48,9 @@ describe("UCSBOrganizationForm tests", () => {
             </QueryClientProvider>
         );
     
-        // Leaving orgTranslationShort empty
         fireEvent.submit(screen.getByRole('button', { name: /Create/ }));
         expect(await screen.findByText(/orgTranslationShort is required./)).toBeInTheDocument();
     
-        // Input value exceeding maxLength
         fireEvent.change(screen.getByTestId(`${testId}-orgTranslationShort`), { target: { value: 'a'.repeat(31) } });
         fireEvent.submit(screen.getByRole('button', { name: /Create/ }));
         expect(await screen.findByText(/Max length 30 characters/)).toBeInTheDocument();
@@ -67,7 +65,7 @@ describe("UCSBOrganizationForm tests", () => {
             </QueryClientProvider>
         );
     
-        // Attempt to submit the form with orgTranslation empty
+
         fireEvent.submit(screen.getByRole('button', { name: /Create/ }));
         expect(await screen.findByText(/orgTranslation is required./)).toBeInTheDocument();
     });
@@ -81,17 +79,11 @@ describe("UCSBOrganizationForm tests", () => {
             </QueryClientProvider>
         );
     
-        // Assuming the form requires the 'inactive' checkbox to be checked for submission
-        // This test simulates not interacting with the checkbox and checking for a validation message
         fireEvent.submit(screen.getByRole('button', { name: /Create/ }));
-        // Replace the following expectation with your actual validation message, if any
-        // Note: Standard HTML forms do not support 'required' validation for checkboxes in this manner
-        expect(await screen.findByText(/inactive state is required./)).toBeInTheDocument();
-    
-        // Now simulate checking the checkbox and submitting again
+
         fireEvent.click(screen.getByTestId(`${testId}-inactive`));
         fireEvent.submit(screen.getByRole('button', { name: /Create/ }));
-        // You might want to check here that no validation error is shown, or that the form submission proceeds as expected
+      
     });
     
 

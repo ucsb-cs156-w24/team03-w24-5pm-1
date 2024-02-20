@@ -21,7 +21,7 @@ describe("UCSBOrganizationUtils", () => {
       const cell = {
         row: {
           values: {
-            id: "123"
+            orgCode: "LI"
           }
         }
       };
@@ -29,7 +29,7 @@ describe("UCSBOrganizationUtils", () => {
         url: "/api/ucsborganization",
         method: "DELETE",
         params: {
-          id: "123"
+          orgCode: "LI"
         }
       };
       const result = cellToAxiosParamsDelete(cell);
