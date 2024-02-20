@@ -79,9 +79,7 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     id="inactive"
                     type="checkbox"
                     isInvalid={Boolean(errors.inactive)}
-                    {...register("inactive", {
-                        required: "inactive state is required.",
-                    })}
+                    {...register("inactive")}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.inactive?.message}
