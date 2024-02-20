@@ -21,7 +21,8 @@ describe("UserTable tests", () => {
 
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
+          <ArticlesTable articles={ArticlesFixtures.threeArticles}
+          currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -35,17 +36,20 @@ describe("UserTable tests", () => {
     });
 
     expectedFields.forEach((field) => {
-
-      const header = screen.getByTestId(`${testId}-cell-row-0-col-${field}`);
-
+      const header = screen.getByTestId
+      (`${testId}-cell-row-0-col-${field}`);
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
-    const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    expect(screen.getByTestId
+        (`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId
+        (`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    const editButton = screen.queryByTestId
+    (`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).not.toBeInTheDocument();
-    const deleteButton = screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.queryByTestId
+    (`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).not.toBeInTheDocument();
   });
 
@@ -55,7 +59,8 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-            <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
+            <ArticlesTable articles={ArticlesFixtures.threeArticles}
+            currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -67,16 +72,21 @@ describe("UserTable tests", () => {
       expect(header).toBeInTheDocument();
     });
     expectedFields.forEach((field) => {
-      const header = screen.getByTestId(`${testId}-cell-row-0-col-${field}`);
+      const header = screen.getByTestId
+      (`${testId}-cell-row-0-col-${field}`);
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
-    const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    expect(screen.getByTestId
+        (`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId
+        (`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    const editButton = screen.getByTestId
+    (`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
-    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId
+    (`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
   });
@@ -87,18 +97,19 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-            <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
+            <ArticlesTable articles={ArticlesFixtures.threeArticles}
+            currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
-    await waitFor(() => { expect(screen.getByTestId(`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
-    const editButton = screen.getByTestId(`ArticlesTable-cell-row-0-col-Edit-button`);
+    await waitFor(() => { expect(screen.getByTestId
+        (`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+    const editButton = screen.getByTestId
+        (`ArticlesTable-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
-
     fireEvent.click(editButton);
-
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/articles/edit/1'));
 
   });
@@ -110,16 +121,18 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-            <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
+            <ArticlesTable articles={ArticlesFixtures.threeArticles}
+            currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
-    await waitFor(() => { expect(screen.getByTestId(`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
-    const deleteButton = screen.getByTestId(`ArticlesTable-cell-row-0-col-Delete-button`);
+    await waitFor(() => { expect(screen.getByTestId
+        (`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+    const deleteButton = screen.getByTestId
+        (`ArticlesTable-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
-
     fireEvent.click(deleteButton);
   });
 });
