@@ -1,7 +1,7 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ArticlesForm from "main/components/Articles/ArticlesForm";
-import { articlesFixtures } from 'fixtures/articlesFixtures';
+import { ArticlesFixtures } from 'fixtures/ArticlesFixtures';
 
 const mockedNavigate = jest.fn();
 
@@ -24,7 +24,7 @@ describe("ArticlesForm tests", () => {
     test("renders correctly when passing in an article", async () => {
         render(
             <Router  >
-                <ArticlesForm initialContents={articlesFixtures.oneArticle} />
+                <ArticlesForm initialContents={ArticlesFixtures.oneArticle} />
             </Router>
         );
         await screen.findByTestId(/ArticlesForm-id/);
