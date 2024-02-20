@@ -1,7 +1,7 @@
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { articlesFixtures } from "fixtures/ArticlesFixtures";
+import { ArticlesFixtures } from "fixtures/ArticlesFixtures";
 import { rest } from "msw";
 
 import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
@@ -23,7 +23,7 @@ Default.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/articles', (_req, res, ctx) => {
-            return res(ctx.json(articlesFixtures.threeArticles[0]));
+            return res(ctx.json(ArticlesFixtures.threeArticles[0]));
         }),
         rest.put('/api/articles', async (req, res, ctx) => {
             var reqBody = await req.text();
