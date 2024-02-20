@@ -1,13 +1,13 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import UCSBOrganizationForm from "main/components/UCSBOrganization/UCSBOrganizationForm";
+import UCSBOrganizationForm from 'main/components/UCSBOrganization/UCSBOrganizationForm';
 import { Navigate } from 'react-router-dom'
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
 export default function UCSBOrganizationEditPage({storybook=false}) {
     let { orgCode } = useParams();
-
+    
     const { data: organization, _error, _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
@@ -28,14 +28,14 @@ export default function UCSBOrganizationEditPage({storybook=false}) {
             orgCode: organization.orgCode,
         },
         data: {
-            orgTranslation: organization.orgTranslation,
             orgTranslationShort: organization.orgTranslationShort,
+            orgTranslation: organization.orgTranslation,
             inactive: organization.inactive
         }
     });
 
-    const onSuccess = (restaurant) => {
-        toast(`Organization Updated - id: ${restaurant.orgCode} orgTranslation: ${restaurant.orgTranslation} orgTranslationShort: ${restaurant.orgTranslationShort} inactive: ${restaurant.inactive}`);
+    const onSuccess = (organization) => {
+        toast(`Organization Updated - orgCode: ${organization.orgCode} orgTranslationShort: ${organization.orgTranslationShort} orgTranslation: ${organization.orgTranslation} inactive: ${organization.inactive}`);
     }
 
     const mutation = useBackendMutation(
@@ -58,7 +58,7 @@ export default function UCSBOrganizationEditPage({storybook=false}) {
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit Organization</h1>
+                <h1>Edit UCSBOrganization</h1>
                 {
                     organization && <UCSBOrganizationForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={organization} />
                 }
