@@ -6,7 +6,7 @@ import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { articlesFixtures } from "fixtures/ArticlesFixtures";
+import { ArticlesFixtures } from "fixtures/ArticlesFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "jest-mock-console";
@@ -71,7 +71,7 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
+        axiosMock.onGet("/api/articles/all").reply(200, ArticlesFixtures.threeArticles);
 
         // act
         render(
@@ -123,7 +123,7 @@ describe("ArticlesIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
+        axiosMock.onGet("/api/articles/all").reply(200, ArticlesFixtures.threeArticles);
         axiosMock.onDelete("/api/articles").reply(200, "Article with id 1 was deleted");
 
         // act
