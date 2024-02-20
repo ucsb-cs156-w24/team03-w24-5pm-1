@@ -1,7 +1,7 @@
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { articlesFixtures } from "fixtures/ArticlesFixtures";
+import { ArticlesFixtures } from "fixtures/ArticlesFixtures";
 import { rest } from "msw";
 
 import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
@@ -39,7 +39,7 @@ ThreeItemsOrdinaryUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/articles/all', (_req, res, ctx) => {
-            return res(ctx.json(articlesFixtures.threeArticles));
+            return res(ctx.json(ArticlesFixtures.threeArticles));
         }),
     ],
 }
@@ -55,7 +55,7 @@ ThreeItemsAdminUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/articles/all', (_req, res, ctx) => {
-            return res(ctx.json(articlesFixtures.threeArticles));
+            return res(ctx.json(ArticlesFixtures.threeArticles));
         }),
         rest.delete('/api/articles', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
