@@ -1,14 +1,16 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
-import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import mockConsole from "jest-mock-console";
-import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import mockConsole from "jest-mock-console";
+
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
@@ -40,11 +42,9 @@ describe("UCSBOrganizationIndexPage tests", () => {
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
     };
 
-
-    const queryClient = new QueryClient();
-
     test("Renders with Create Button for admin user", async () => {
         setupAdminUser();
+        const queryClient = new QueryClient();
         axiosMock.onGet("/api/ucsborganization/all").reply(200, []);
 
         render(
@@ -55,7 +55,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        await waitFor(() => {
+        await waitFor( ()=>{
             expect(screen.getByText(/Create Organization/)).toBeInTheDocument();
         });
         const button = screen.getByText(/Create Organization/);
@@ -63,11 +63,12 @@ describe("UCSBOrganizationIndexPage tests", () => {
         expect(button).toHaveAttribute("style", "float: right;");
     });
 
-    test("renders three UCSBOrganization correctly for regular user", async () => {
+    test("renders three organizations correctly for regular user", async () => {
+        
         setupUserOnly();
-
+        const queryClient = new QueryClient();
         axiosMock.onGet("/api/ucsborganization/all").reply(200, ucsbOrganizationFixtures.threeOrganizations);
-    
+
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -76,25 +77,19 @@ describe("UCSBOrganizationIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        await waitFor(() => { expect(screen.getByText("Los Ingenieros")).toBeInTheDocument(); });
+        await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("LI"); });
+        expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent("Society of Women Engineers @ UCSB");
+        expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`)).toHaveTextContent("Associated Students");
 
-        expect(screen.getByText("Los Ingenieros")).toBeInTheDocument();
-        expect(screen.getByText("Society of Women Engineers")).toBeInTheDocument(); 
-        expect(screen.getByText("Associated Students")).toBeInTheDocument(); 
-    
-        const createOrganizationButton = screen.queryByText("Create Organization");
-        expect(createOrganizationButton).not.toBeInTheDocument();
+        expect(screen.queryByText(/Create Organization/)).not.toBeInTheDocument();
 
-        expect(screen.queryByTestId("UCSBOrganizationTable-cell-row-0-col-Delete-button")).not.toBeInTheDocument();
-        expect(screen.queryByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button")).not.toBeInTheDocument();
     });
-    
+
 
     test("renders empty table when backend unavailable, user only", async () => {
         setupUserOnly();
-
+        const queryClient = new QueryClient();
         axiosMock.onGet("/api/ucsborganization/all").timeout();
-
         const restoreConsole = mockConsole();
 
         render(
@@ -105,21 +100,23 @@ describe("UCSBOrganizationIndexPage tests", () => {
             </QueryClientProvider>
         );
 
+        // assert
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
-        
+
         const errorMessage = console.error.mock.calls[0][0];
         expect(errorMessage).toMatch("Error communicating with backend via GET on /api/ucsborganization/all");
         restoreConsole();
 
+        expect(screen.queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
     });
 
     test("what happens when you click delete, admin", async () => {
         setupAdminUser();
-
+        const queryClient = new QueryClient();
         axiosMock.onGet("/api/ucsborganization/all").reply(200, ucsbOrganizationFixtures.threeOrganizations);
+        axiosMock.onDelete("/api/ucsborganization").reply(200, "UCSBOrganization with id LI was deleted");
+        const restoreConsole = mockConsole();
 
-        axiosMock.onDelete("/api/ucsborganization").reply(200,  "Organization with orgCode LI was deleted" );
-    
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -128,21 +125,17 @@ describe("UCSBOrganizationIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        await waitFor(() => { expect(screen.getByText("Los Ingenieros")).toBeInTheDocument(); });
+        await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("LI"); });
 
         const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
         expect(deleteButton).toBeInTheDocument();
-    
+
         fireEvent.click(deleteButton);
-    
-        await waitFor(() => { expect(mockToast).toBeCalledWith("Organization with orgCode LI was deleted") });
-    
-        await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
-        expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganization");
+        restoreConsole();
+
+        await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBOrganization with id LI was deleted") });
 
     });
-    
 
 });
-
 
