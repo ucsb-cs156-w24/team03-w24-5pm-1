@@ -1,5 +1,5 @@
 import React from 'react';
-import RecommendationRequestTable from 'main/components/RecommendationRequest/RecommendationRequestTable';
+import RecommendationRequestTable from 'main/components/RecommendationRequests/RecommendationRequestTable';
 import { recommendationRequestFixtures } from 'fixtures/recommendationRequestFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
