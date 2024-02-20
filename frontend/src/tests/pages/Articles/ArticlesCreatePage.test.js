@@ -105,7 +105,7 @@ describe("ArticlesCreatePage tests", () => {
             "dateAdded": "2022-02-02T12:00"
         });
 
-        expect(mockToast).toBeCalledWith("New article Created - id: 1 title: Hi");
+        expect(mockToast).toBeCalledWith("New article Created - id: 1 title: test");
         expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
     });
 
