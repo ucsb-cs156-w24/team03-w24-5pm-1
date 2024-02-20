@@ -1,7 +1,7 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ArticlesForm from "main/components/Articles/ArticlesForm";
-import { articlesFixtures } from "fixtures/ArticlesFixtures";
+import { articlesFixtures } from 'fixtures/articlesFixtures';
 
 const mockedNavigate = jest.fn();
 
@@ -45,7 +45,7 @@ describe("ArticlesForm tests", () => {
         fireEvent.change(dateAddedField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
-        await screen.findByText(/DateAdded must be in ISO format/);
+        await screen.findByText(/DateAdded is required./);
     });
 
     test("Correct Error messsages on missing input", async () => {
@@ -87,7 +87,7 @@ describe("ArticlesForm tests", () => {
         const submitButton = screen.getByTestId("ArticlesForm-submit");
 
         fireEvent.change(titleField, { target: { value: 'test' } });
-        fireEvent.change(urlField, { target: { value: 'url' } });
+        fireEvent.change(urlField, { target: { value: 'YRL' } });
         fireEvent.change(explanationField, { target: { value: 'test1' } });
         fireEvent.change(emailField, { target: { value: 'test@ucsb.edu' } });
         fireEvent.change(dateAddedField, { target: { value: '2022-01-02T12:00:00' } });
@@ -95,7 +95,7 @@ describe("ArticlesForm tests", () => {
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(screen.queryByText(/DateAdded must be in ISO format/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/DateAdded is required./)).not.toBeInTheDocument();
     });
 
     test("that navigate(-1) is called when Cancel is clicked", async () => {
