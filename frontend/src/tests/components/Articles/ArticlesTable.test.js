@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { articlesFixtures } from "fixtures/ArticlesFixtures";
+import { ArticlesFixtures } from "fixtures/ArticlesFixtures";
 import ArticlesTable from "main/components/Articles/ArticlesTable"
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -21,7 +21,7 @@ describe("UserTable tests", () => {
 
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+          <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -55,7 +55,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-            <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+            <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -87,7 +87,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-            <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+            <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -110,7 +110,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-            <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+            <ArticlesTable articles={ArticlesFixtures.threeArticles} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
