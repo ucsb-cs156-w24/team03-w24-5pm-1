@@ -1,6 +1,6 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 
-export default function UCSBDiningCommonsMenuItemPage() {
+export default function UCSBDiningCommonsMenuItemIndexPage() {
 
   // Stryker disable all : placeholder for future implementation
   return (
