@@ -19,9 +19,17 @@ import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/Rec
 import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
 import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
 
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
+import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
+import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
+
+
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
 
 function App() {
   const { data: currentUser } = useCurrentUser();
@@ -78,6 +86,21 @@ function App() {
               <Route exact path="/recommendationrequests/create" element={<RecommendationRequestCreatePage />} />
             </>
           )
+       }
+       {
+              hasRole(currentUser, "ROLE_USER") && (
+                <>
+                  <Route exact path="/HelpRequest" element={<HelpRequestIndexPage />} />
+                </>
+              )
+        }
+        {
+              hasRole(currentUser, "ROLE_ADMIN") && (
+                <>
+                  <Route exact path="/HelpRequest/edit/:id" element={<HelpRequestEditPage />} />
+                  <Route exact path="/HelpRequest/create" element={<HelpRequestCreatePage />} />
+                </>
+              )
         }
          {
           hasRole(currentUser, "ROLE_USER") && (
@@ -94,6 +117,22 @@ function App() {
             </>
           )
         }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/ucsborganization" element={<UCSBOrganizationIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/ucsborganization/edit/:id" element={<UCSBOrganizationEditPage />} />
+              <Route exact path="/ucsborganization/create" element={<UCSBOrganizationCreatePage />} />
+            </>
+          )
+        }
+        
       </Routes>
     </BrowserRouter>
   );
