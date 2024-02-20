@@ -79,7 +79,7 @@ describe("ArticlesEditPage tests", () => {
                 title: "test1",
                 url: "test1.com",
                 explanation: "test1!",
-                email: "test1@test.edu",
+                email: "test1@ucsb.edu",
                 dateAdded: "2022-01-02T12:00"
             });
             axiosMock.onPut('/api/articles').reply(200, {
