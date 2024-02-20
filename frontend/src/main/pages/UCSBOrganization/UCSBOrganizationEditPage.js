@@ -35,7 +35,7 @@ export default function UCSBOrganizationEditPage({storybook=false}) {
     });
 
     const onSuccess = (organization) => {
-        toast(`Organization Updated - orgCode: ${organization.orgCode} orgTranslationShort: ${organization.orgTranslationShort} orgTranslation: ${organization.orgTranslation} inactive: ${organization.inactive}`);
+        toast(`Organization Updated - id: ${organization.orgCode} orgTranslation: ${organization.orgTranslation} orgTranslationShort: ${organization.orgTranslationShort} inactive: ${organization.inactive}`);
     }
 
     const mutation = useBackendMutation(
@@ -58,7 +58,7 @@ export default function UCSBOrganizationEditPage({storybook=false}) {
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit UCSBOrganization</h1>
+                <h1>Edit Organization</h1>
                 {
                     organization && <UCSBOrganizationForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={organization} />
                 }
