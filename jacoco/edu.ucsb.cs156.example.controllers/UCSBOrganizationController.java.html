@@ -62,10 +62,10 @@ import javax.validation.Valid;
     @Operation(summary = &quot;Get a single organization&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;&quot;)
-    public UCSBOrganization geOrganization(
-            @Parameter(name = &quot;id&quot;) @RequestParam String id) {
-<span class="fc" id="L67">        UCSBOrganization organization = ucsbOrganizationRepository.findById(id)</span>
-<span class="fc" id="L68">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, id));</span>
+    public UCSBOrganization getOrganization(
+            @Parameter(name = &quot;orgCode&quot;) @RequestParam String orgCode) {
+<span class="fc" id="L67">        UCSBOrganization organization = ucsbOrganizationRepository.findById(orgCode)</span>
+<span class="fc" id="L68">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, orgCode));</span>
 <span class="fc" id="L69">        return organization;</span>
 
     }
@@ -74,11 +74,11 @@ import javax.validation.Valid;
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PutMapping(&quot;&quot;)
     public UCSBOrganization updateOrganization(
-            @Parameter(name = &quot;id&quot;) @RequestParam String id,
+            @Parameter(name = &quot;orgCode&quot;) @RequestParam String orgCode,
             @RequestBody @Valid UCSBOrganization incoming) {
                 
-<span class="fc" id="L80">        UCSBOrganization organization = ucsbOrganizationRepository.findById(id)</span>
-<span class="fc" id="L81">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, id));</span>
+<span class="fc" id="L80">        UCSBOrganization organization = ucsbOrganizationRepository.findById(orgCode)</span>
+<span class="fc" id="L81">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, orgCode));</span>
 <span class="fc" id="L82">        organization.setOrgTranslationShort(incoming.getOrgTranslationShort());</span>
 <span class="fc" id="L83">        organization.setOrgTranslation(incoming.getOrgTranslation());</span>
 <span class="fc" id="L84">        organization.setInactive(incoming.getInactive());</span>
@@ -92,12 +92,12 @@ import javax.validation.Valid;
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @DeleteMapping(&quot;&quot;)
     public Object deleteOrganization(
-            @Parameter(name = &quot;id&quot;) @RequestParam String id) {
-<span class="fc" id="L96">        UCSBOrganization organization = ucsbOrganizationRepository.findById(id)</span>
-<span class="fc" id="L97">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, id));</span>
+            @Parameter(name = &quot;orgCode&quot;) @RequestParam String orgCode) {
+<span class="fc" id="L96">        UCSBOrganization organization = ucsbOrganizationRepository.findById(orgCode)</span>
+<span class="fc" id="L97">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, orgCode));</span>
 
 <span class="fc" id="L99">        ucsbOrganizationRepository.delete(organization);</span>
-<span class="fc" id="L100">        return genericMessage(&quot;UCSBOrganization with id %s deleted&quot;.formatted(id));</span>
+<span class="fc" id="L100">        return genericMessage(&quot;UCSBOrganization with id %s deleted&quot;.formatted(orgCode));</span>
     }
     
 }
