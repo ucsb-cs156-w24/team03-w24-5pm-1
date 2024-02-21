@@ -1,11 +1,8 @@
 import { onDeleteSuccess, cellToAxiosParamsDelete } from "main/utils/RecommendationRequestUtils";
-
 import mockConsole from "jest-mock-console";
 
 const mockToast = jest.fn();
-
 jest.mock('react-toastify', () => {
-
     const originalModule = jest.requireActual('react-toastify');
     return {
         __esModule: true,
@@ -14,10 +11,11 @@ jest.mock('react-toastify', () => {
     };
 });
 
-describe("RecommendationRequestUtilsTest", () => {
-    describe("onDeleteSuccess", () => {
-        test("It puts the message on console.log and in a toast", () => {
+describe("recommendationRequestUtils", () => {
 
+    describe("onDeleteSuccess", () => {
+
+        test("It puts the message on console.log and in a toast", () => {
             // arrange
             const restoreConsole = mockConsole();
 
@@ -29,14 +27,14 @@ describe("RecommendationRequestUtilsTest", () => {
             expect(console.log).toHaveBeenCalled();
             const message = console.log.mock.calls[0][0];
             expect(message).toMatch("abc");
+
             restoreConsole();
         });
-    });
 
+    });
     describe("cellToAxiosParamsDelete", () => {
 
         test("It returns the correct params", () => {
-
             // arrange
             const cell = { row: { values: { id: 17 } } };
 
@@ -48,9 +46,8 @@ describe("RecommendationRequestUtilsTest", () => {
                 url: "/api/RecommendationRequest",
                 method: "DELETE",
                 params: { id: 17 }
-
             });
         });
-    });
 
+    });
 });
