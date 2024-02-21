@@ -1,7 +1,7 @@
-import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import RecommendationRequestForm from "main/components/RecommendationRequests/RecommendationRequestForm";
-import { Navigate } from 'react-router-dom'
+import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useBackendMutation } from "main/utils/useBackend";
+import { Navigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 export default function RecommendationRequestCreatePage({storybook=false}) {
@@ -45,4 +45,4 @@ export default function RecommendationRequestCreatePage({storybook=false}) {
       </div>
     </BasicLayout>
   )
-}
+  }
