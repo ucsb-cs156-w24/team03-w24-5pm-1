@@ -30,7 +30,7 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <PlaceholderEditPage />
+                    <UCSBDiningCommonsMenuItemEditPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );

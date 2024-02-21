@@ -30,7 +30,7 @@ describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <PlaceholderIndexPage />
+                    <UCSBDiningCommonsMenuItemIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
