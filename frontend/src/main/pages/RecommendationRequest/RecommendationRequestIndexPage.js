@@ -7,7 +7,6 @@ import { useCurrentUser , hasRole} from 'main/utils/currentUser'
 import { Button } from 'react-bootstrap';
 
 export default function RecommendationRequestIndexPage() {
-
     const currentUser = useCurrentUser();
 
     const { data: recommendationRequests, error: _error, status: _status } =
