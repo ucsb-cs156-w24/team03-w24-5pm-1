@@ -25,7 +25,6 @@ export default function RecommendationRequestCreatePage({storybook=false}) {
   const mutation = useBackendMutation(
     objectToAxiosParams,
      { onSuccess },
-     ["/api/RecommendationRequest/all"]
   );
   
   const { isSuccess } = mutation
