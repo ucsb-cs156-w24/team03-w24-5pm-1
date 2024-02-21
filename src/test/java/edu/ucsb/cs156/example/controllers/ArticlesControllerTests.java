@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.util.Optional;
@@ -63,7 +62,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         public void logged_in_user_can_get_all_articles() throws Exception {
 
                 // arrange
-                LocalDate ldt1 = LocalDate.parse("2022-01-03");
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-11-03T00:00:00");
 
                 Articles articles1 = Articles.builder()
                                 .title("Article0")
@@ -73,7 +72,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
                                 .dateAdded(ldt1)
                                 .build();
 
-                LocalDate ldt2 = LocalDate.parse("2022-03-11");
+                LocalDateTime ldt2 = LocalDateTime.parse("2022-01-03T00:00:00");
 
                 Articles articles2 = Articles.builder()
                                 .title("article1")
@@ -120,7 +119,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         public void an_admin_user_can_post_a_new_articles() throws Exception {
                 // arrange
 
-                LocalDate ldt1 = LocalDate.parse("2022-01-03");
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
 
                 Articles articles1 = Articles.builder()
                                 .title("article1")
@@ -134,7 +133,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/articles/post?title=article1&url=TestArticle1.com&explanation=article1fortesting&email=test@ucsb.edu&dateAdded=2022-01-03")
+                                post("/api/articles/post?title=article1&url=TestArticle1.com&explanation=article1fortesting&email=test@ucsb.edu&dateAdded=2022-01-03T00:00:00")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -158,7 +157,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
 
                 // arrange
-                LocalDate ldt = LocalDate.parse("2022-01-03");
+                LocalDateTime ldt = LocalDateTime.parse("2022-01-03T00:00:00");
 
                 Articles articles = Articles.builder()
                                 .title("article1")
@@ -210,7 +209,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         public void admin_can_delete_a_date() throws Exception {
                 // arrange
 
-                LocalDate ldt1 = LocalDate.parse("2022-01-03");
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
 
                 Articles articles1 = Articles.builder()
                                 .title("article1")
@@ -263,8 +262,8 @@ public class ArticlesControllerTests extends ControllerTestCase {
         public void admin_can_edit_an_existing_articles() throws Exception {
                 // arrange
 
-                LocalDate ldt1 = LocalDate.parse("2022-01-03");
-                LocalDate ldt2 = LocalDate.parse("2023-01-08");
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2023-01-08T00:00:00");
 
                 Articles articlesOrig = Articles.builder()
                                 .title("Article0")
@@ -308,7 +307,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         public void admin_cannot_edit_articles_that_does_not_exist() throws Exception {
                 // arrange
 
-                LocalDate ldt1 = LocalDate.parse("2022-01-03");
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
 
                 Articles editedArticles = Articles.builder()
                                 .title("article1")
