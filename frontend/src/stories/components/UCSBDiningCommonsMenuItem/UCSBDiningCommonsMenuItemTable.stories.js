@@ -18,19 +18,19 @@ const Template = (args) => {
 export const Empty = Template.bind({});
 
 Empty.args = {
-    UCSBDiningCommonsMenuItems: []
+    menuitems: []
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    UCSBDiningCommonsMenuItems: ucsbDiningCommonsMenuItemFixtures.threeUCSBDiningCommonsMenuItems,
+    menuitems: ucsbDiningCommonsMenuItemFixtures.threeUCSBDiningCommonsMenuItems,
     currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-    UCSBDiningCommonsMenuItems: ucsbDiningCommonsMenuItemFixtures.threeUCSBDiningCommonsMenuItems,
+    menuitems: ucsbDiningCommonsMenuItemFixtures.threeUCSBDiningCommonsMenuItems,
     currentUser: currentUserFixtures.adminUser,
 }
 

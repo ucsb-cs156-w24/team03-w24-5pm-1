@@ -24,11 +24,11 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
     } 
   }
   
-  const { data: UCSBDiningCommonsMenuItems, error: _error, status: _status } =
-    useBackend(
+    const { data: menuitems, error: _error, status: _status } = useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
       ["/api/UCSBDiningCommonsMenuItem/all"],
       { method: "GET", url: "/api/UCSBDiningCommonsMenuItem/all" },
+      // Stryker disable next-line all : don't test internal caching of React Query
       []
     );
 
@@ -37,7 +37,7 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
       <div className="pt-2">
         {createButton()}
         <h1>UCSBDiningCommonsMenuItem</h1>
-        <UCSBDiningCommonsMenuItemTable UCSBDiningCommonsMenuItems={UCSBDiningCommonsMenuItems} currentUser={currentUser} />
+        <UCSBDiningCommonsMenuItemTable menuitems={menuitems} currentUser={currentUser} />
       </div>
     </BasicLayout>
   )

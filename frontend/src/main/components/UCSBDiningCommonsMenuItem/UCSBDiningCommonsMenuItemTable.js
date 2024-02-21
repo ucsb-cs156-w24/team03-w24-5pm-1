@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
 export default function UCSBDiningCommonsMenuItemTable({
-    UCSBDiningCommonsMenuItems,
+    menuitems,
     currentUser,
     testIdPrefix = "UCSBDiningCommonsMenuItemTable" }) {
 
@@ -27,12 +27,14 @@ export default function UCSBDiningCommonsMenuItemTable({
     // Stryker restore all 
 
     // Stryker disable next-line all : TODO try to make a good test for this
-    const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
+    const deleteCallback = async (cell) => { 
+        deleteMutation.mutate(cell);
+     }
 
     const columns = [
         {
             Header: 'id',
-            accessor: 'id', // accessor is the "key" in the data
+            accessor: 'id', 
         },
 
         {
@@ -55,7 +57,7 @@ export default function UCSBDiningCommonsMenuItemTable({
     } 
 
     return <OurTable
-        data={UCSBDiningCommonsMenuItems}
+        data={menuitems}
         columns={columns}
         testid={testIdPrefix}
     />;
