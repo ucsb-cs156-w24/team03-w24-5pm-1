@@ -22,6 +22,7 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     data-testid={testIdPrefix + "-orgCode"}
                     id="orgCode"
                     type="text"
+                    disabled={buttonLabel === "Update"}
                     isInvalid={Boolean(errors.orgCode)}
                     {...register("orgCode", {
                         required: "orgCode is required.",
