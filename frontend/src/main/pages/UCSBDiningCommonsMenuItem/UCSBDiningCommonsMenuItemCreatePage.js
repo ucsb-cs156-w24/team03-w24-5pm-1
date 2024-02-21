@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function UCSBDiningCommonsMenuItemCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (ucsbdiningcommonsmenuitems) => ({
-    url: "/api/ucsbdiningcommonsmenuitems/post",
+    url: "/api/UCSBDiningCommonsMenuItem/post",
     method: "POST",
     params: {
      diningCommonsCode: ucsbdiningcommonsmenuitems.diningCommonsCode,
@@ -24,7 +24,7 @@ export default function UCSBDiningCommonsMenuItemCreatePage({storybook=false}) {
     objectToAxiosParams,
      { onSuccess }, 
      // Stryker disable next-line all : hard to set up test for caching
-     ["/api/ucsbdiningcommonsmenuitems/all"] // mutation makes this key stale so that pages relying on it reload
+     ["/api/UCSBDiningCommonsMenuItem/all"] // mutation makes this key stale so that pages relying on it reload
      );
 
   const { isSuccess } = mutation
