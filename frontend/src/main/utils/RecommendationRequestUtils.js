@@ -5,13 +5,9 @@ export function onDeleteSuccess(message) {
     toast(message);
 }
 
-export function cellToAxiosParamsDelete(cell) {
+export function cellToAxiosParamsDelete() {
     return {
-        url: "/api/UCSBDiningCommonsMenuItem",
+        url: "/api/RecommendationRequest",
         method: "DELETE",
-        params: {
-            id: cell.row.values.id
-        }
     }
 }
-
